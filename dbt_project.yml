@@ -1,0 +1,10 @@
+config-version: 2
+
+name: 'dbt_painel_protheus'
+version: '0.0.1'
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'carol'
+
+models:
+  +materialized: ephemeral

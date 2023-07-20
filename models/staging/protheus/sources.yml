@@ -1,0 +1,52 @@
+version: 2
+
+sources:
+  - name: protheus
+    database: "{{ target.project }}"
+    schema: "{{ target.dataset }}"
+
+    quoting:
+      database: true
+      schema: true
+      identifier: true
+
+    loader: smartlink
+    loaded_at_field: _ingestionDateTime
+
+    freshness:
+      warn_after: {count: 30, period: day}
+      error_after: {count: 90, period: day}
+
+    tables:
+      - name: se1
+        identifier: stg_protheus_carol_se1
+        columns:
+          - name: protheus_pk
+            description: "Chave primária"
+          - name: E1_NUM
+            description: "Número do documento"
+          - name: E1_TIPO
+            description: "Tipo do documento"
+          - name: E1_EMISSAO
+            description: "Data de emissão"
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+              - protheus_pk
+              - E1_EMISSAO
+
+
+      - name: sa1
+        identifier: stg_protheus_carol_sa1
+        columns:
+          - name: protheus_pk
+            description: "Chave primária"
+            tests:
+              - dbt_expectations.expect_column_to_exist
+          - name: A1_NREDUZ
+            description: "Nome reduzido"
+            tests:
+              - dbt_expectations.expect_column_to_exist
+          - name: COLUNA_NAO_EXISTENTE
+            tests:
+              - dbt_expectations.expect_column_to_exist
