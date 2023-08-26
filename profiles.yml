@@ -10,5 +10,5 @@ carol:
       location: US
       job_execution_timeout_seconds: 300
       job_retries: 1
-      threads: 1
+      threads: 2
   target: dev

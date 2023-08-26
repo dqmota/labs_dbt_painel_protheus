@@ -29,6 +29,12 @@ sources:
             description: "Tipo do documento"
           - name: E1_EMISSAO
             description: "Data de emissão"
+          - name: E1_PREFIXO
+            tests:
+              - not_null:
+                  config:
+                    where: "E1_TIPO = 'NF'"
+
         tests:
           - dbt_utils.unique_combination_of_columns:
               combination_of_columns:
