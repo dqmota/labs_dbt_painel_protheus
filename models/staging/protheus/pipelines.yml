@@ -1,0 +1,44 @@
+version: 2
+
+exposures:
+
+  - name: sql_painelarinvoiceaccounting
+    type: analysis
+
+    depends_on:
+      - source('protheus', 'se1')
+
+    owner:
+      name: Protheus Team
+      email: a@a.com
+
+  - name: sql_painelarinvoiceinstallment
+    type: analysis
+
+    depends_on:
+      - source('protheus', 'sa1')
+      - source('protheus', 'se1')
+
+    owner:
+      name: Protheus Team
+      email: a@a.com
+
+  - name: sql_painelmdpartner
+    type: analysis
+
+    depends_on:
+      - source('protheus', 'sa1')
+
+    owner:
+      name: Protheus Team
+      email: a@a.com
+
+  - name: sql_painelarinvoicepayments
+    type: analysis
+
+    depends_on:
+      - source('protheus', 'se1')
+
+    owner:
+      name: Protheus Team
+      email: a@a.com
