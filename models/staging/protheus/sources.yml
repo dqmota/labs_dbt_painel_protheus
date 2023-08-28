@@ -40,6 +40,7 @@ sources:
               combination_of_columns:
               - protheus_pk
               - E1_EMISSAO
+          - protheus_valid_columns
 
 
       - name: sa1
@@ -56,3 +57,5 @@ sources:
           - name: COLUNA_NAO_EXISTENTE
             tests:
               - dbt_expectations.expect_column_to_exist
+        tests:
+          - protheus_valid_columns
